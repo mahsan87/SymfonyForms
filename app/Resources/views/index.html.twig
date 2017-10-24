@@ -1,0 +1,25 @@
+{% if app.user %}
+    Welcome, {{ app.user.username }}!<br/>
+    {{ dump(app.user) }}
+    <a href="{{ logout_url("secured_area") }}">
+        <button>Logout</button>
+    </a>
+{% else %}
+    <h1>Symfony Auth0 Quickstart</h1>
+    <script src="https://cdn.auth0.com/js/auth0/8.10.1/auth0.min.js"></script>
+    <script type="text/javascript">
+        var webAuth = new auth0.WebAuth({
+            domain: 'ahsan.eu.auth0.com',
+            clientID: 'P-7UADegrvTfflAvi9lfvVYiNUYmQndt',
+            redirectUri: 'http://localhost:8000/auth0/callback',
+            audience: `https://ahsan.eu.auth0.com/userinfo`,
+            responseType: 'code',
+            scope: 'openid profile'
+        });
+
+        function signin() {
+            webAuth.authorize();
+        }
+    </script>
+    <button onclick="window.signin();">Login</button>
+{% endif %}

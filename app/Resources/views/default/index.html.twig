@@ -3,34 +3,21 @@
 
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-success">
-                <div class="panel-heading">List of Game of Thrones Characters</div>
+<script src="//cdn.auth0.com/js/lock/10.0/lock.min.js"></script>
+<script type="text/javascript">
 
-                {% if app.user != null %}
-                  <table class="table">
-                      <tr>
-                          <th>Character</th>
-                          <th>Real Name</th>
-                      </tr>
-
-                      {% for key, item in character %}
-                        <tr>
-                          <td>{{ key }}</td><td>{{ item }}</td>
-                        </tr>
-                      {% endfor %}
-                  </table>
-                {% endif %}
+  var lock = new Auth0Lock('BWE7WnRrn4Ms93m1YX1Yvp1IsgKbIMqI', 'ahsan.eu.auth0.com');
 
 
-            </div>
-
-            {% if app.user == null %}
-              <a href="/login" class="btn btn-info"> You need to login to see the list 😜😜 >></a>
-            {% endif %}
-        </div>
-    </div>
-</div>
+  function signin() {
+    lock.show({
+        callbackURL: 'http://localhost:8000/auth0/callback'
+      , responseType: 'code'
+      , authParams: {
+        scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
+      }
+    });
+  }
+</script>
+<button onclick="window.signin();">Login</button>
 {% endblock %}

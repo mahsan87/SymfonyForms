@@ -67,3 +67,13 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+hwi_oauth:
+    firewall_names: [secured_area]
+    resource_owners:
+        auth0:
+            type:                auth0
+            base_url:            https://ahsan.eu.auth0.com
+            client_id:           BWE7WnRrn4Ms93m1YX1Yvp1IsgKbIMqI
+            client_secret:       J87aiNtxBPKy9cOHVypcfROf8iFLzB0EiHMojS33A3fWJtasFtKGvhiul6Fq0a08
+            scope: "openid profile"
